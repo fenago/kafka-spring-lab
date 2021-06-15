@@ -6,7 +6,7 @@ Apache Kafka with Spring
 **1. Overview**
 
 
-In this tutorial, we'll cover Spring support for Kafka and the level of
+In this lab, we'll cover Spring support for Kafka and the level of
 abstractions it provides over native Kafka Java client APIs. We will devleop a Spring Boot app to demonstrate sending and receiving of messages in Kafka using spring-kafka.
 
 
@@ -29,11 +29,17 @@ Complete solution for this lab is available at github:
 Open folder in IntelliJ after running above commands.
 
 
+![](./images/1.png)
+
+
+Make sure that kafka and zookeeper is running.
+
+
 **2. PreReq and Setup**
 
 Make sure that kafka and zookeeper is running:
 
-We also need to add the *spring-kafka* dependency to our *pom.xml*:
+We need to add the *spring-kafka* dependency to our *pom.xml*:
 
     <dependency>
         <groupId>org.springframework.kafka</groupId>
@@ -50,7 +56,7 @@ As Kafka topics are not created automatically by default, this application requi
 
 `$ cd ~/kafka-training/kafka`<br>
 
-`$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic fenago`<br>
+`$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic baeldung`<br>
 
 `$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 5 --topic partitioned`<br>
 
@@ -407,13 +413,19 @@ Finally, we need to write a listener to consume *Greeting* messages:
     }
 
 
+
+![](./images/2.png)
+
 When the application runs successfully, following output is logged on to console (along with spring logs):
 
-#### Message received from the 'fenago' topic by the basic listeners with groups foo and bar
+![](./images/3.png)
+
+
+#### Message received from the 'baeldung' topic by the basic listeners with groups foo and bar
 >Received Message in group 'foo': Hello, World!<br>
 Received Message in group 'bar': Hello, World!
 
-#### Message received from the 'fenago' topic, with the partition info
+#### Message received from the 'baeldung' topic, with the partition info
 >Received Message: Hello, World! from partition: 0
 
 #### Message received from the 'partitioned' topic, only from specific partitions
@@ -421,7 +433,7 @@ Received Message in group 'bar': Hello, World!
 Received Message: Hello To Partioned Topic! from partition: 3
 
 #### Message received from the 'filtered' topic after filtering
->Received Message in filtered listener: Hello Fenago!
+>Received Message in filtered listener: Hello Baeldung!
 
 #### Message (Serialized Java Object) received from the 'greeting' topic
 >Received greeting message: Greetings, World!!
